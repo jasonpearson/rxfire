@@ -1,0 +1,27 @@
+{
+  "name": "rxfire",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync start --files '*.js' --server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.10.1",
+    "gulp": "^3.9.0",
+    "jspm": "^0.16.19"
+  },
+  "jspm": {
+    "dependencies": {
+      "firebase": "github:firebase/firebase-bower@^2.3.2",
+      "firebase-util": "npm:firebase-util@^0.2.5",
+      "rxjs": "npm:rxjs@^5.0.0-beta.0"
+    },
+    "devDependencies": {
+      "typescript": "npm:typescript@^1.6.2"
+    }
+  }
+}
