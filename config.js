@@ -8,7 +8,7 @@ System.config({
   },
 
   map: {
-    "firebase": "github:firebase/firebase-bower@2.3.2",
+    "firebase": "npm:firebase@2.3.2",
     "firebase-util": "npm:firebase-util@0.2.5",
     "rxjs": "npm:rxjs@5.0.0-beta.0",
     "typescript": "npm:typescript@1.7.5",
@@ -229,6 +229,13 @@ System.config({
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
     "npm:firebase@2.2.9": {
+      "buffer": "github:jspm/nodelibs-buffer@0.1.0",
+      "faye-websocket": "npm:faye-websocket@0.10.0",
+      "http": "github:jspm/nodelibs-http@1.7.1",
+      "https": "github:jspm/nodelibs-https@0.1.0",
+      "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:firebase@2.3.2": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "faye-websocket": "npm:faye-websocket@0.10.0",
       "http": "github:jspm/nodelibs-http@1.7.1",

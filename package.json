@@ -25,7 +25,7 @@
   },
   "jspm": {
     "dependencies": {
-      "firebase": "github:firebase/firebase-bower@^2.3.2",
+      "firebase": "npm:firebase@^2.3.2",
       "firebase-util": "npm:firebase-util@^0.2.5",
       "rxjs": "npm:rxjs@^5.0.0-beta.0"
     },
