@@ -8,7 +8,15 @@
     "start": "browser-sync start --files '*.js' --server",
     "build": "jspm bundle-sfx src/index.js dist/rxfire.js --format cjs"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jasonpearson/rxfire.git"
+  },
+  "keywords": [
+    "rxjs",
+    "firebase"
+  ],
+  "author": "Jason Pearson <jasonp.pdx@gmail.com> (http://jasonpearson.me/)",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.10.1",
