@@ -1,5 +1,4 @@
 import fbUtil from 'firebase-util'
-fbUtil.init()
 
 export default fbCollections = {
   reviews: baseUrl => {

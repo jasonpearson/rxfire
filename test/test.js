@@ -1,4 +1,5 @@
-import RxFire from './index'
+import RxFire from '../src/rxfire'
+// var RxFire = require('../dist/rxfire.js').RxFire
 
 RxFire.setBase('https://jsonperson.firebaseio.com')
 

@@ -2,10 +2,11 @@
   "name": "rxfire",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browser-sync start --files '*.js' --server"
+    "start": "browser-sync start --files '*.js' --server",
+    "build": "jspm bundle-sfx src/index.js dist/rxfire.js --format cjs"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,16 @@
     },
     "devDependencies": {
       "typescript": "npm:typescript@^1.6.2"
+    },
+    "overrides": {
+      "npm:firebase-util@0.2.5": {
+        "main": "dist/firebase-util.min",
+        "shim": {
+          "dist/firebase-util.min": [
+            "firebase"
+          ]
+        }
+      }
     }
   }
 }
