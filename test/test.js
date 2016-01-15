@@ -1,3 +1,5 @@
+console.log('asdf')
+
 import RxFire from 'rxfire';
 console.log(RxFire)
 

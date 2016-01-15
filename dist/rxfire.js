@@ -1,24 +1,32 @@
 /// <reference path="../typings/tsd.d.ts" />
-import fbCollections from './firebase-collections';
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Rx = require('rx');
+var Firebase = require('firebase');
+var firebase_collections_1 = require('./firebase-collections');
 function checkRef(opts) {
-    let ref = opts && (opts.ref || opts.fbRef)
+    var ref = opts && (opts.ref || opts.fbRef)
         || typeof opts === 'string' && opts || this.base;
     ref = opts.ref.includes('firebaseio.com') ? ref : this.base + '/' + ref;
     return ref;
 }
-export default class RxFire extends Firebase {
-    constructor(opts) {
-        super(checkRef(opts));
+var RxFire = (function (_super) {
+    __extends(RxFire, _super);
+    function RxFire(opts) {
+        _super.call(this, checkRef(opts));
         this.initialItems = [];
         this.newItems = new Rx.Subject();
         this.list = new Rx.ReplaySubject(1);
         this.updates = new Rx.Subject();
         this.create = new Rx.Subject();
-        const onChildAdded = opts && opts.initChildAdded || true;
-        const normalized = opts && opts.normalized || false;
-        const onValue = opts && opts.onValue || false;
-        const orderByChild = opts && opts.orderByChild || false;
-        const equalTo = opts && opts.equalTo || false;
+        var onChildAdded = opts && opts.initChildAdded || true;
+        var normalized = opts && opts.normalized || false;
+        var onValue = opts && opts.onValue || false;
+        var orderByChild = opts && opts.orderByChild || false;
+        var equalTo = opts && opts.equalTo || false;
         this.ref = normalized ? this.normalizedCollection(normalized) : this;
         if (onValue) {
             this.onValue();
@@ -27,24 +35,28 @@ export default class RxFire extends Firebase {
             this.onChildAdded();
         }
     }
-    static setBase(baseUrl) {
+    RxFire.setBase = function (baseUrl) {
         RxFire.prototype.base = baseUrl;
-    }
-    onValue() {
-        this.ref.on('value', snap => this.list.next(snap.val()));
-    }
-    onChildAdded() {
+    };
+    RxFire.prototype.onValue = function () {
+        var _this = this;
+        this.ref.on('value', function (snap) { return _this.list.next(snap.val()); });
+    };
+    RxFire.prototype.onChildAdded = function () {
+        var _this = this;
         this.updates
-            .scan((childAdded, operation) => operation(childAdded), this.initialItems)
+            .scan(function (childAdded, operation) { return operation(childAdded); }, this.initialItems)
             .subscribe(this.list);
         this.create
-            .map(item => childAdded => childAdded.concat(item))
+            .map(function (item) { return function (childAdded) { return childAdded.concat(item); }; })
             .subscribe(this.updates);
         this.newItems
             .subscribe(this.create);
-        this.ref.on('child_added', snap => this.newItems.next(snap.val()));
-    }
-    normalizedCollection(collectionId) {
-        return fbCollections[collectionId](this.base);
-    }
-}
+        this.ref.on('child_added', function (snap) { return _this.newItems.next(snap.val()); });
+    };
+    RxFire.prototype.normalizedCollection = function (collectionId) {
+        return firebase_collections_1.default[collectionId](this.base);
+    };
+    return RxFire;
+})(Firebase);
+exports.default = RxFire;
