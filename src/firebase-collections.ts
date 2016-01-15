@@ -1,4 +1,4 @@
-import fbUtil from 'firebase-util'
+import fbUtil = require('firebase-util')
 
 export default fbCollections = {
   reviews: baseUrl => {

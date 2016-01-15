@@ -1,0 +1,24 @@
+{
+  "version": "1.7.5",
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "./dist"
+  },
+  "filesGlob": [
+    "./src/**/*.ts",
+    "!./src/test/*.*"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  },
+  "files": [
+    "./src/firebase-collections.ts",
+    "./src/rxfire.ts"
+  ]
+}

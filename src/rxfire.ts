@@ -1,26 +1,39 @@
-import Rx from 'rxjs'
+/// <reference path="../../typings/tsd.d.ts" />
+
+import Rx from 'rx'
 import Firebase from 'firebase'
 import fbCollections from './firebase-collections'
 
+function checkRef(opts: RxFireOptions) {
+  let ref = opts && (opts.ref || opts.fbRef)
+            || typeof opts === 'string' && opts || this.base
+  ref = opts.ref.includes('firebaseio.com') ? ref : this.base + '/' + ref
+  return ref
+}
+
 export default class RxFire extends Firebase {
   base: string
+
   initialItems = []
   newItems= new Rx.Subject()
   list = new Rx.ReplaySubject(1)
   updates = new Rx.Subject()
   create = new Rx.Subject()
 
-  constructor(opts) {
-    let   ref             = opts && (opts.ref || opts.fbRef) ||
-                            typeof opts === 'string' && opts || this.base
+  constructor(opts: RxFireOptions) {
+    super(checkRef(opts))
+    // let   ref             = opts && (opts.ref || opts.fbRef) ||
+    //                         typeof opts === 'string' && opts || this.base
+    //
+    // ref = opts.ref.includes('firebaseio.com') ? ref : this.base + '/' + ref
+    // super(ref)
+
     const onChildAdded    = opts && opts.initChildAdded      || true
     const normalized      = opts && opts.normalized          || false
     const onValue         = opts && opts.onValue             || false
     const orderByChild    = opts && opts.orderByChild        || false
     const equalTo         = opts && opts.equalTo             || false
 
-    ref = ref.includes('firebaseio.com') ? ref : this.base + '/' + ref
-    super(ref)
     this.ref = normalized ? this.normalizedCollection(normalized) : this
 
     if (onValue) {

@@ -1,5 +1,5 @@
 import RxFire from 'rxfire';
-// import RxFire from './src/rxfire'
+// import RxFire from '../src/rxfire'
 
 RxFire.setBase('https://jsonperson.firebaseio.com')
 

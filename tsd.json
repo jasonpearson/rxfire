@@ -1,0 +1,18 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "firebase/firebase.d.ts": {
+      "commit": "6eebd5e90a1cbd6b47b0705ba72dbcd5baf846f3"
+    },
+    "rx/rx.d.ts": {
+      "commit": "6eebd5e90a1cbd6b47b0705ba72dbcd5baf846f3"
+    },
+    "rx/rx-lite.d.ts": {
+      "commit": "6eebd5e90a1cbd6b47b0705ba72dbcd5baf846f3"
+    }
+  }
+}

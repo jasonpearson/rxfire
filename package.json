@@ -1,12 +1,11 @@
 {
   "name": "rxfire",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/rxfire.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browser-sync start --files '*.js' --server",
-    "build": "jspm bundle-sfx src/index.js dist/rxfire.js --format cjs"
+    "start": "browser-sync start --files '*.js' --server"
   },
   "repository": {
     "type": "git",
@@ -21,26 +20,18 @@
   "devDependencies": {
     "browser-sync": "^2.10.1",
     "gulp": "^3.9.0",
-    "jspm": "^0.16.19"
+    "jspm": "^0.16.23",
+    "systemjs": "^0.19.15"
+  },
+  "dependencies": {
+    "firebase": "^2.3.2",
+    "firebase-util": "^0.2.5",
+    "rx": "^4.0.7"
   },
   "jspm": {
-    "dependencies": {
-      "firebase": "npm:firebase@^2.3.2",
-      "firebase-util": "npm:firebase-util@^0.2.5",
-      "rxjs": "npm:rxjs@^5.0.0-beta.0"
-    },
+    "dependencies": {},
     "devDependencies": {
       "typescript": "npm:typescript@^1.6.2"
-    },
-    "overrides": {
-      "npm:firebase-util@0.2.5": {
-        "main": "dist/firebase-util.min",
-        "shim": {
-          "dist/firebase-util.min": [
-            "firebase"
-          ]
-        }
-      }
     }
   }
 }
