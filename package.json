@@ -1,11 +1,10 @@
 {
   "name": "rxfire",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "dist/rxfire.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "browser-sync start --files '*.js' --server"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,24 +16,9 @@
   ],
   "author": "Jason Pearson <jasonp.pdx@gmail.com> (http://jasonpearson.me/)",
   "license": "ISC",
-  "devDependencies": {
-    "browser-sync": "^2.10.1",
-    "gulp": "^3.9.0",
-    "jspm": "^0.16.23",
-    "systemjs": "^0.19.15"
-  },
   "dependencies": {
     "firebase": "^2.3.2",
     "firebase-util": "^0.2.5",
     "rxjs": "^5.0.0-beta.1"
-  },
-  "jspm": {
-    "dependencies": {
-      "firebase": "npm:firebase@^2.3.2",
-      "rx": "npm:rxjs@^5.0.0-beta.1"
-    },
-    "devDependencies": {
-      "typescript": "npm:typescript@^1.6.2"
-    }
   }
 }

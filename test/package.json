@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync start --files '*.js' --server"
+  },
+  "author": "Jason Pearson <jasonp.pdx@gmail.com> (jasonpearson.me)",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.11.0",
+    "jspm": "^0.16.23"
+  },
+  "jspm": {
+    "devDependencies": {
+      "typescript": "npm:typescript@^1.6.2"
+    }
+  }
+}
