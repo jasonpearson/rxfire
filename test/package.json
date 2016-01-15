@@ -15,7 +15,7 @@
   },
   "jspm": {
     "dependencies": {
-      "rxfire": "npm:rxfire@^1.0.5"
+      "rxfire": "npm:rxfire@^1.0.6"
     },
     "devDependencies": {
       "typescript": "npm:typescript@^1.6.2"

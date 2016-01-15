@@ -8,7 +8,7 @@ System.config({
   },
 
   map: {
-    "rxfire": "npm:rxfire@1.0.5",
+    "rxfire": "npm:rxfire@1.0.6",
     "typescript": "npm:typescript@1.7.5",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -308,10 +308,10 @@ System.config({
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
     },
-    "npm:rxfire@1.0.5": {
+    "npm:rxfire@1.0.6": {
       "firebase": "npm:firebase@2.3.2",
       "firebase-util": "npm:firebase-util@0.2.5",
-      "rxjs": "npm:rxjs@5.0.0-beta.1"
+      "rx": "npm:rxjs@5.0.0-beta.1"
     },
     "npm:rxjs@5.0.0-beta.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0",
