@@ -1,6 +1,6 @@
 {
   "name": "rxfire",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/rxfire.js",
   "scripts": {
@@ -26,10 +26,13 @@
   "dependencies": {
     "firebase": "^2.3.2",
     "firebase-util": "^0.2.5",
-    "rx": "^4.0.7"
+    "rxjs": "^5.0.0-beta.1"
   },
   "jspm": {
-    "dependencies": {},
+    "dependencies": {
+      "firebase": "npm:firebase@^2.3.2",
+      "rx": "npm:rxjs@^5.0.0-beta.1"
+    },
     "devDependencies": {
       "typescript": "npm:typescript@^1.6.2"
     }

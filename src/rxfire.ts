@@ -1,7 +1,7 @@
-/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="../typings/tsd.d.ts" />
 
-import Rx from 'rx'
-import Firebase from 'firebase'
+import Rx = require('rx')
+import Firebase = require('firebase')
 import fbCollections from './firebase-collections'
 
 function checkRef(opts: RxFireOptions) {
