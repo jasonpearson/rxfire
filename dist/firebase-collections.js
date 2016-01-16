@@ -1,3 +1,6 @@
+"use strict";
+var Firebase = require('firebase');
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = fbCollections = {
     reviews: function (baseUrl) {
         var ref = new Firebase(baseUrl);

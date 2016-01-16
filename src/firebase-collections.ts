@@ -1,3 +1,4 @@
+import Firebase = require('firebase')
 import fbUtil = require('firebase-util')
 
 export default fbCollections = {

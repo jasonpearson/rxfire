@@ -1,4 +1,4 @@
-/// <reference path="../typings/tsd.d.ts" />
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -7,11 +7,15 @@ var __extends = (this && this.__extends) || function (d, b) {
 var Rx = require('rx');
 var Firebase = require('firebase');
 var firebase_collections_1 = require('./firebase-collections');
+var Assign = require('lodash.assign');
 function checkRef(opts) {
-    var ref = opts && (opts.ref || opts.fbRef)
-        || typeof opts === 'string' && opts || this.base;
-    ref = opts.ref.includes('firebaseio.com') ? ref : this.base + '/' + ref;
-    return ref;
+    var instanceRef = opts && (opts.ref || opts.fbRef);
+    if (opts.normalized) {
+        return RxFire.base;
+    }
+    else {
+        return RxFire.base ? RxFire.base + '/' + instanceRef : opts.ref || opts.fbRef;
+    }
 }
 var RxFire = (function (_super) {
     __extends(RxFire, _super);
@@ -23,26 +27,31 @@ var RxFire = (function (_super) {
         this.updates = new Rx.Subject();
         this.create = new Rx.Subject();
         var onChildAdded = opts && opts.initChildAdded || true;
-        var normalized = opts && opts.normalized || false;
+        var normalized = opts && opts.normalized || '';
         var onValue = opts && opts.onValue || false;
         var orderByChild = opts && opts.orderByChild || false;
         var equalTo = opts && opts.equalTo || false;
-        this.ref = normalized ? this.normalizedCollection(normalized) : this;
-        if (onValue) {
-            this.onValue();
+        if (normalized && onValue) {
+            this.listenOnValue.call(RxFire.normalizedRef(this, RxFire.base, normalized));
+        }
+        else if (normalized && onChildAdded && !onValue) {
+            this.listenOnChildAdded.call(RxFire.normalizedRef(this, RxFire.base, normalized));
+        }
+        else if (onValue) {
+            this.listenOnValue();
         }
         else if (onChildAdded && !onValue) {
-            this.onChildAdded();
+            this.listenOnChildAdded();
         }
     }
     RxFire.setBase = function (baseUrl) {
-        RxFire.prototype.base = baseUrl;
+        RxFire.base = baseUrl;
     };
-    RxFire.prototype.onValue = function () {
+    RxFire.prototype.listenOnValue = function () {
         var _this = this;
-        this.ref.on('value', function (snap) { return _this.list.next(snap.val()); });
+        this.on('value', function (snap) { return _this.list.next(snap.val()); });
     };
-    RxFire.prototype.onChildAdded = function () {
+    RxFire.prototype.listenOnChildAdded = function () {
         var _this = this;
         this.updates
             .scan(function (childAdded, operation) { return operation(childAdded); }, this.initialItems)
@@ -52,11 +61,13 @@ var RxFire = (function (_super) {
             .subscribe(this.updates);
         this.newItems
             .subscribe(this.create);
-        this.ref.on('child_added', function (snap) { return _this.newItems.next(snap.val()); });
+        this.on('child_added', function (snap) { return _this.newItems.next(snap.val()); });
     };
-    RxFire.prototype.normalizedCollection = function (collectionId) {
-        return firebase_collections_1.default[collectionId](this.base);
+    RxFire.normalizedRef = function (instance, ref, collectionId) {
+        var normRef = Assign(instance, firebase_collections_1.default[collectionId](ref));
+        return normRef;
     };
     return RxFire;
-})(Firebase);
+}(Firebase));
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = RxFire;

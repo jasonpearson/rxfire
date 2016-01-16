@@ -6,7 +6,7 @@ interface RxFireOptions {
   ref?: string;
   fbRef?: string;
   initChildAdded?: boolean;
-  normalized?: boolean;
+  normalized?: string;
   onValue?: boolean;
   orderByChild?: boolean;
   equalTo?: boolean;
